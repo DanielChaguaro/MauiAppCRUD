@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppCRUD.ProductoPage"
+             Title="ProductoPage">
+    <VerticalStackLayout >
+
+        <HorizontalStackLayout HorizontalOptions="FillAndExpand" BackgroundColor="Blue" >
+            <Image Source="dotnet_bot.png" HeightRequest="80" WidthRequest="50"/>
+            <Label Text="Producto App" FontSize="30" TextColor="White"/>
+        </HorizontalStackLayout>
+        <Button Text="Nuevo Producto" Clicked="OnClickedNuevoProducto"></Button>
+    </VerticalStackLayout>
+</ContentPage>
