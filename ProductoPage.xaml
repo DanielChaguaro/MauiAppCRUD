@@ -3,12 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppCRUD.ProductoPage"
              Title="ProductoPage">
-    <VerticalStackLayout >
-
-        <HorizontalStackLayout HorizontalOptions="FillAndExpand" BackgroundColor="Blue" >
-            <Image Source="dotnet_bot.png" HeightRequest="80" WidthRequest="50"/>
-            <Label Text="Producto App" FontSize="30" TextColor="White"/>
+    <VerticalStackLayout>
+        <HorizontalStackLayout
+            BackgroundColor="DarkBlue">
+            <Image
+                Source="dotnet_bot.png"
+                HeightRequest="50"
+                WidthRequest="100"
+                />
+            <Label 
+                Text="Productos"
+                FontSize="30"
+                TextColor="White"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" />
         </HorizontalStackLayout>
-        <Button Text="Nuevo Producto" Clicked="OnClickedNuevoProducto"></Button>
+        <Button
+            Text="Nuevo Producto"
+            FontSize="20"
+            HorizontalOptions="Fill"
+            Clicked="OnClickNuevoProducto"/>
+
+        <ListView x:Name="listaProductos"
+                  RowHeight="80" ItemSelected="OnClickShowDetail">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="dotnet_bot.png"
+                                   HeightRequest="50"
+                                   WidthRequest="100"/>
+                            <StackLayout Orientation="Vertical">
+                                <Label
+                                    Text="{Binding Nombre}"
+                                    VerticalOptions="Start"
+                                    FontSize="20"/>
+                                <Label
+                                    Text="{Binding cantidad}"
+                                    VerticalOptions="End"
+                                    FontSize="20"/>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+
+        </ListView>
+
     </VerticalStackLayout>
 </ContentPage>
