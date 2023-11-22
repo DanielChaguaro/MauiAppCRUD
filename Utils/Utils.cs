@@ -1,4 +1,5 @@
 ﻿using MauiAppCRUD.Models;
+using MauiAppCRUD.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MauiAppCRUD.Utils
 {
+    
     internal class Utils
     {
         static public List<Producto> ListaProductos = new List<Producto>()

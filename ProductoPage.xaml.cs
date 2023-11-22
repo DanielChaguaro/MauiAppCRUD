@@ -6,15 +6,20 @@ using CommunityToolkit.Maui.Core;
 using System.Collections.ObjectModel;
 using MauiAppCRUD.Models;
 using MauiAppCRUD.Utils;
+using MauiAppCRUD.Services;
 
 namespace MauiAppCRUD;
 
 public partial class ProductoPage : ContentPage
 {
+    ObservableCollection<Producto> products;
+    ApiService _ApiService;
     public ProductoPage()
     {
         InitializeComponent();
-
+       
+        products = new ObservableCollection<Producto>(Utils.Utils.ListaProductos);
+        listaProductos.ItemsSource = products;
     }
     protected override void OnAppearing()
     {
@@ -33,6 +38,9 @@ public partial class ProductoPage : ContentPage
     private async void OnClickShowDetail(object sender, SelectedItemChangedEventArgs e)
     {
         Producto producto = e.SelectedItem as Producto;
-        await Navigation.PushAsync(new DetailsPage(producto));
+        await Navigation.PushAsync(new DetailsPage()
+        {
+            BindingContext= producto,
+        });
     }
 }

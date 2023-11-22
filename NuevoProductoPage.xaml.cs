@@ -7,23 +7,46 @@ namespace MauiAppCRUD;
 
 public partial class NuevoProductoPage : ContentPage
 {
+    private Producto _producto;
 	public NuevoProductoPage()
 	{
 		InitializeComponent();
 		
 	}
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        _producto = BindingContext as Producto;
+        if(_producto != null )
+        {
+            Nombre.Text = _producto.Nombre;
+            Cantidad.Text = _producto.cantidad.ToString();
+            Descripcion.Text = _producto.Descripcion;
+        }
+    }
     private async void OnClickGuardarProducto(object sender, EventArgs e)
     {
-        int id = Utils.Utils.ListaProductos.Count + 1;
-        Utils.Utils.ListaProductos.Add(new Producto
+        if( _producto != null )
         {
-            IdProducto = id,
-            Nombre = Nombre.Text,
-            Descripcion = Descripcion.Text,
-            cantidad = Int32.Parse(Cantidad.Text),
+            _producto.Nombre=Nombre.Text;
+            _producto.Descripcion=Descripcion.Text;
+            _producto.cantidad=Int32.Parse(Cantidad.Text);
         }
-        );
-        //await Navigation.PushAsync(new NuevoProductoPage());
+        else
+        {
+            int id = Utils.Utils.ListaProductos.Count + 1;
+            Utils.Utils.ListaProductos.Add(new Producto
+            {
+                IdProducto = id,
+                Nombre = Nombre.Text,
+                Descripcion = Descripcion.Text,
+                cantidad = Int32.Parse(Cantidad.Text),
+            }
+            );
+            //await Navigation.PushAsync(new NuevoProductoPage());
+            
+        }
         await Navigation.PopAsync();
+
     }
 }
