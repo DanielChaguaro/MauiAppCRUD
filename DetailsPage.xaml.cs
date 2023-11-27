@@ -24,18 +24,19 @@ public partial class DetailsPage : ContentPage
 
     private async void OnClickRegresarProducto(object sender, EventArgs e)
     {
+        
         await Navigation.PopAsync();
     }
     private async void ClickEliminarProducto(object sender, EventArgs e)
     {
-        
-        Utils.Utils.ListaProductos.Remove(_producto);
+
+        await _ApiService.DeleteProducto(_producto.IdProducto);
         await Navigation.PopAsync();
     }
     private async void ClickEditarProducto(object sender, EventArgs e)
     {
 
-        await Navigation.PushAsync(new NuevoProductoPage()
+        await Navigation.PushAsync(new NuevoProductoPage(_ApiService)
         {
             BindingContext = _producto,
         });

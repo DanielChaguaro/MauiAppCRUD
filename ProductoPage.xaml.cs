@@ -32,7 +32,7 @@ public partial class ProductoPage : ContentPage
 
         var toast = Toast.Make("On Click Boton Nuevo Producto", ToastDuration.Short, 14);
         await toast.Show();
-        await Navigation.PushAsync(new NuevoProductoPage());
+        await Navigation.PushAsync(new NuevoProductoPage(_ApiService));
     }
 
     private async void OnClickShowDetail(object sender, SelectedItemChangedEventArgs e)
