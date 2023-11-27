@@ -9,8 +9,9 @@ using System.Threading.Tasks;
 namespace MauiAppCRUD.Utils
 {
     
-    internal class Utils
+    public class Utils
     {
+        static public  ApiService apiService= new ApiService();
         static public List<Producto> ListaProductos = new List<Producto>()
         {
             new Producto{

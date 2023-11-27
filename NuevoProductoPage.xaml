@@ -18,7 +18,7 @@
                 </TableSection>
             </TableRoot>
         </TableView>
-        <Button Text="Guardad Producto"
+        <Button Text="Guardar Producto"
                 Clicked="OnClickGuardarProducto"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -13,19 +13,19 @@ namespace MauiAppCRUD;
 public partial class ProductoPage : ContentPage
 {
     ObservableCollection<Producto> products;
-    ApiService _ApiService;
-    public ProductoPage()
+    private readonly ApiService _ApiService;
+    public ProductoPage(ApiService apiservice)
     {
         InitializeComponent();
-       
-        products = new ObservableCollection<Producto>(Utils.Utils.ListaProductos);
-        listaProductos.ItemsSource = products;
+       _ApiService=apiservice;
+        
     }
-    protected override void OnAppearing()
+    protected async override void OnAppearing()
     {
         base.OnAppearing();
-        var productos = new ObservableCollection<Producto>(Utils.Utils.ListaProductos);
-        listaProductos.ItemsSource = productos;
+        List<Producto> Listaproductos = await _ApiService.GetProductos();
+        products = new ObservableCollection<Producto>(Listaproductos);
+        listaProductos.ItemsSource = products;
     }
     private async void OnClickNuevoProducto(object sender, EventArgs e)
     {
@@ -38,7 +38,7 @@ public partial class ProductoPage : ContentPage
     private async void OnClickShowDetail(object sender, SelectedItemChangedEventArgs e)
     {
         Producto producto = e.SelectedItem as Producto;
-        await Navigation.PushAsync(new DetailsPage()
+        await Navigation.PushAsync(new DetailsPage(_ApiService)
         {
             BindingContext= producto,
         });

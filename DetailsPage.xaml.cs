@@ -1,13 +1,16 @@
 using MauiAppCRUD.Models;
+using MauiAppCRUD.Services;
 
 namespace MauiAppCRUD;
 
 public partial class DetailsPage : ContentPage
 {
     public Producto _producto;
-	public DetailsPage()
+    private readonly ApiService _ApiService;
+    public DetailsPage(ApiService apiservice)
 	{
 		InitializeComponent();
+        _ApiService = apiservice;
         
     }
     protected override void OnAppearing()
@@ -25,11 +28,13 @@ public partial class DetailsPage : ContentPage
     }
     private async void ClickEliminarProducto(object sender, EventArgs e)
     {
+        
         Utils.Utils.ListaProductos.Remove(_producto);
         await Navigation.PopAsync();
     }
     private async void ClickEditarProducto(object sender, EventArgs e)
     {
+
         await Navigation.PushAsync(new NuevoProductoPage()
         {
             BindingContext = _producto,

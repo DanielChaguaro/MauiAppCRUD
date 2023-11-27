@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MauiAppCRUD.Services
 {
-    internal class ApiService
+    public class ApiService
     {
         private static string _baseUrl = "http://10.0.2.2:5038/";
         public ApiService()

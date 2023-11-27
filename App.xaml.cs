@@ -7,8 +7,8 @@ namespace MauiAppCRUD
         public App()
         {
             InitializeComponent();
-            ApiService _apiService=new ApiService();
-            MainPage = new NavigationPage(new ProductoPage());
+            ApiService apiService=new ApiService();
+            MainPage = new NavigationPage(new ProductoPage(apiService));
         }
     }
 }
